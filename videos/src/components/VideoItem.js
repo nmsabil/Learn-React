@@ -11,6 +11,11 @@ const VideoItem = ({ video, onVideoSelect }) => {
       />
       <div className='content'>
         <div className='header'>{video.snippet.title}</div>
+
+        <p>
+          <span style={{ color: "grey" }}>Published at:</span>{" "}
+          {video.snippet.publishedAt}
+        </p>
       </div>
     </div>
   );

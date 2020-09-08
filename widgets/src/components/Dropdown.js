@@ -46,6 +46,10 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
             {redeneredOptions}
           </div>
         </div>
+        <div
+          className='text'
+          style={{ color: selected.value }}
+        >{`This text is ${selected.value}`}</div>
       </div>
     </div>
   );

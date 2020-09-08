@@ -5,7 +5,12 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
   const ref = useRef();
 
   useEffect(() => {
-    document.body.addEventListener("click", (event) => setOpen(false));
+    document.body.addEventListener("click", (event) => {
+      if (ref.current.contains(event.target)) {
+        return;
+      }
+      setOpen(false);
+    });
   }, []);
 
   const redeneredOptions = options.map((option) => {

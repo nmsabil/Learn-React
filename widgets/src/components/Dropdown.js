@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const Dropdown = ({ options, selected, onSelectedChange }) => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef();
+
+  useEffect(() => {
+    document.body.addEventListener("click", (event) => setOpen(false));
+  }, []);
+
   const redeneredOptions = options.map((option) => {
     if (option.value === selected.value) {
       return null;
@@ -15,14 +22,20 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
       </div>
     );
   });
+
   return (
-    <div className='ui form'>
+    <div ref={ref} className='ui form'>
       <div className='field'>
         <label className='label'>Select a color</label>
-        <div className='ui selection dropdown visible active'>
+        <div
+          onClick={() => setOpen(!open)}
+          className={`ui selection dropdown ${open ? "visible active" : ""}`}
+        >
           <i className='dropdown icon'></i>
           <div className='text'>{selected.label}</div>
-          <div className='menu visible transition'>{redeneredOptions}</div>
+          <div className={`menu ${open ? "visible transition" : ""}`}>
+            {redeneredOptions}
+          </div>
         </div>
       </div>
     </div>

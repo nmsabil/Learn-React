@@ -34,6 +34,34 @@ const options = [
   },
 ];
 
+const showAccordion = () => {
+  if (window.location.pathname === "/") {
+    return <Accordion items={items} />;
+  }
+};
+const showList = () => {
+  if (window.location.pathname === "/list") {
+    return <Search />;
+  }
+};
+const showDropdown = (selected, setSelected) => {
+  if (window.location.pathname === "/dropdown") {
+    return (
+      <Dropdown
+        selected={selected}
+        onSelectedChange={setSelected}
+        options={options}
+        label={"Choose a color"}
+      />
+    );
+  }
+};
+const showTranslate = () => {
+  if (window.location.pathname === "/translate") {
+    return <Translate />;
+  }
+};
+
 export default () => {
   const [selected, setSelected] = useState(options[0]);
   return (
@@ -46,7 +74,11 @@ export default () => {
         onSelectedChange={setSelected}
         options={options}
       /> */}
-      <Translate />
+      {/* <Translate /> */}
+      {showAccordion()}
+      {showList()}
+      {showDropdown(selected, setSelected)}
+      {showTranslate()}
     </div>
   );
 };
